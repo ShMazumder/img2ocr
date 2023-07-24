@@ -3,18 +3,17 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 require_once __DIR__ . '/bootstrap.php';
 
-// Creating the new document...
-$phpWord = new \PhpOffice\PhpWord\PhpWord();
-
-// each page 
-
-
-
 $inputDir = "output";
 $outputDir = "output_doc";
 
 $list = scandir($inputDir);
 $chapterCount = 0;
+
+// Creating the new document...
+$phpWord = new \PhpOffice\PhpWord\PhpWord();
+
+// each page 
+$section = $phpWord->addSection();
 
 for ($fileIndex = 1; $fileIndex <= count($list); $fileIndex++) {
     $fileName = $list[$fileIndex - 1];
@@ -32,8 +31,6 @@ for ($fileIndex = 1; $fileIndex <= count($list); $fileIndex++) {
         continue;
     }
 
-
-    $section = $phpWord->addSection();
     $phpWord->setDefaultFontName('Times New Roman');
     $phpWord->setDefaultFontSize(10);
 
