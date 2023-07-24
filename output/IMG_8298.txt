@@ -1,0 +1,27 @@
+evaluating their interaction with corresponding major
+histocompatibility complex class I molecules. They
+potentially induce immune responses (176). The
+recombinant vaccine can be designed by using rabies
+virus (RV) as a viral vector. RV can be made to
+express MERS-CoV S1 protein on its surface so that
+an immune response is induced against MERS-CoV.
+The RV vector-based vaccines against MERS-CoV
+can induce faster antibody response as well as higher
+degrees of cellular immunity than the Gram-positive
+enhancer matrix (GEM) particle vector-based
+vaccine. However, the latter can induce a very high
+antibody response at lower doses (167). Hence, the
+degree of humoral and cellular immune responses
+produced by such vaccines depends upon the vector
+used.
+
+Dual vaccines have been getting more popular
+recently. Among them, the rabies virus-based
+vectored vaccine platform is used to develop
+vaccines against emerging infectious diseases. The
+dual vaccine developed from inactivated rabies virus
+particles that express the MERS-CoV S1 domain of
+S protein was found to induce immune responses for
+both MERS-CoV and rabies virus. The vaccinated
+mice were found to be completely protected from
+challenge with MERS-CoV (169). The intranasal

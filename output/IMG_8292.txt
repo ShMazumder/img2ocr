@@ -1,0 +1,27 @@
+class I viral transmembrane protein. The size of this
+abundant S protein varies from 1,160 amino acids
+(IBV, infectious bronchitis virus, in poultry) to 1,400
+amino acids (FCoV, feline coronavirus) (43). It lies
+in a trimer on the virion surface, giving the virion a
+corona or crown-like appearance. Functionally it is
+required for the entry of the infectious virion
+particles into the cell through interaction with
+various host cellular receptors (44).
+
+Furthermore, it acts as a critical factor for tissue
+tropism and the determination of host range (45).
+Notably, S protein is one of the vital
+immunodominant proteins of CoVs capable of
+inducing host immune responses (45). The
+ectodomains in all CoVs S proteins have similar
+domain organizations, divided into two subunits, S1
+and S2 (43). The first one, $1, helps in host receptor
+binding, while the second one, S2, accounts for
+fusion. The former (S1) is further divided into two
+subdomains, namely, the N-terminal domain (NTD)
+and C-terminal domain (CTD). Both of these
+subdomains act as_ receptor-binding domains,
+interacting efficiently with various host receptors
+(45). The Sl CTD contains the receptor-binding
+motif (RBM). In each coronavirus spike protein, the
+trimeric S1 locates itself on top of the trimeric S2

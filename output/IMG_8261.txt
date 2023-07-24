@@ -1,0 +1,39 @@
+The pathogenesis of SARS-CoV-2 infection in
+humans manifests itself as mild symptoms to severe
+respiratory failure. On binding to epithelial cells in
+the respiratory tract, SARS-CoV-2 starts replicating
+and migrating down to the airways and enters alveo-
+lar epithelial cells in the lungs. The rapid replication of
+SARS-CoV-2 in the lungs may trigger a strong immune
+response. Cytokine storm syndrome causes acute res-
+piratory distress syndrome and respiratory failure, which
+is considered the main cause of death in patients with
+COVID-19 (REFS*”"!). Patients of older age (>60 years)
+and with serious pre-existing diseases have a greater risk
+of developing acute respiratory distress syndrome and
+death" (FIG. 4). Multiple organ failure has also been
+reported in some COVID-19 cases**.
+Histopathological changes in patients with COVID-19
+occur mainly in the lungs. Histopathology analyses
+showed bilateral diffused alveolar damage, hyaline
+membrane formation, desquamation of pneumocytes
+and fibrin deposits in lungs of patients with severe
+COVID-19. Exudative inflammation was also shown
+in some cases. Immunohistochemistry assays detected
+SARS-CoV-2 antigen in the upper airway, bronchiolar
+epithelium and submucosal gland epithelium, as well as
+in type I and type II pneumocytes, alveolar macrophages
+and hyaline membranes in the lungs'*"”,
+
+Animal models used for studying SARS-CoV-2
+infection pathogenesis include non-human primates
+(rhesus macaques, cynomolgus monkeys, marmosets
+and African green monkeys), mice (wild-type mice (with
+mouse-adapted virus) and human ACE2-transgenic
+or human ACE2-knock-in mice), ferrets and golden
+hamsters*“**-“. In non-human primate animal mod-
+els, most species display clinical features similar to those
+of patients with COVID- 19, including virus shedding,
+virus replication and host responses to SARS-CoV-2
+infection®”””*. For example, in the rhesus macaque
+model, high viral loads were detected in the upper and

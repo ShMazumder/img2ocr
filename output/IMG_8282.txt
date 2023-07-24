@@ -1,0 +1,35 @@
+a polybasic cleavage site (RRAR), which enables effec-
+tive cleavage by furin and other proteases”. Such an
+S1-S2 cleavage site is not observed in all related viruses
+belonging to the subgenus Sarbecovirus, except for a
+similar three amino acid insertion (PAA) in RmYN02,
+a bat-derived coronavirus newly reported from
+Rhinolophus malayanus in China” (FIG. 3a). Although the
+insertion in RmYNO02 does not functionally represent a
+polybasic cleavage site, it provides support for the notion
+that this characteristic, initially considered unique to
+SARS-CoV-2, has been acquired naturally’*. A structural
+study suggested that the furin-cleavage site can reduce
+the stability of SARS-CoV-2 S protein and facilitate the
+conformational adaption that is required for the binding
+of the RBD to its receptor”. Whether the higher trans-
+missibility of SARS-CoV-2 compared with SARS-CoV
+is a gain of function associated with acquisition of the
+furin-like cleavage site is yet to be demonstrated”®.
+
+An additional distinction is the accessory gene orf8
+of SARS-CoV-2, which encodes a novel protein showing
+only 40% amino acid identity to ORF8 of SARS-CoV.
+Unlike in SARS-CoV, this new ORF8 protein does
+not contain a motif that triggers intracellular stress
+pathways”. Notably, a SARS-CoV-2 variant with a
+382-nucleotide deletion covering the whole of ORF8 has
+been discovered in a number of patients in Singapore,
+which resembles the 29- or 415-nucleotide deletions in
+the ORF8 region observed in human SARS-CoV variants
+from the late phase of the 2002-2003 outbreak”. Such
+ORFS deletion may be indicative of human adaptation
+
+after cross-species transmission from an animal host.
+
+m. ... Py, ae: fF age. yp aane

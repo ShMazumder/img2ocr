@@ -1,0 +1,28 @@
+fALIIaL IVIVUUOIDS ALI Well WULLULYDS
+
+For evaluating the potential of vaccines and
+therapeutics against CoVs, including SARS-CoV,
+MERS-CoVs, and the presently emerging SARS-
+CoV-2, suitable animal models that can mimic the
+clinical disease are needed (211, 212). Various
+animal models were assessed for SARS- and MERS-
+CoVs, such as mice, guinea pigs, golden Syrian
+hamsters, ferrets, rabbits, nonhuman primates like
+rhesus macaques and marmosets, and cats (185,
+213-218). The specificity of the virus to hACE2
+(receptor of SARS-CoV) was found to be a
+significant barrier in developing animal models.
+Consequently, a SARS-CoV transgenic mouse model
+has been developed by inserting the hACE2 gene
+into the mouse genome (219). The inability of
+MERS-CoV to replicate in the respiratory tracts of
+animals (mice, hamsters, and ferrets) is another
+limiting factor. However, with genetic engineering, a
+288-330'/* MERS-CoV genetically modified mouse
+model was developed and now is in use for the
+assessment of novel drugs and vaccines against
+MERS-CoV (220). In the past, small animals (mice
+or hamsters) have been targeted for being closer to a
+humanized structure, such as mouse DPP4 altered
+with human DPP4 (hDPP4), hDPP4-transduced
+mice. and hDPP4-Tg mice (transgenic for expressing

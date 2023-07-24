@@ -1,0 +1,28 @@
+cat and camels, respectively, act as amplifier hosts
+(40, 41).
+
+Coronavirus genomes and subgenomes encode
+six ORFs (31). The majority of the 5’ end is occupied
+by ORFla/b, which produces 16 nsps. The two
+polyproteins, ppla and pplab, are initially produced
+from ORFla/b by a —1 frameshift between ORFla
+and ORF 1b (32). The virus-encoded proteases cleave
+polyproteins into individual nsps (main protease
+[Mpro], chymotrypsin-like protease [3CLpro], and
+papain-like proteases [PLPs]) (42). SARS-CoV-2
+also encodes these nsps, and their functions have
+been elucidated recently (31). Remarkably, a
+difference between SARS-CoV-2 and other CoVs is
+the identification of a novel short putative protein
+within the ORF3 band, a secreted protein with an
+alpha helix and beta-sheet with six strands encoded
+by ORF8 (31).
+
+Coronaviruses encode four major structural
+proteins, namely, spike (S), membrane (M), envelope
+(E), and nucleocapsid (N), which are described in
+detail below.
+
+S Glycoprotein
+Coronavirus S protein is a large, multifunctional
+class I viral transmembrane protein. The size of this

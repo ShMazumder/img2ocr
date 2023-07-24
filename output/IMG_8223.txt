@@ -1,0 +1,27 @@
+Among the evaluated compounds, 4-(cyclopent-
+1-en-3-ylamino)-5-[2-(4-
+iodophenyl)hydrazinyl]-4H-1,2,4-triazole-3-thiol and
+4-(cyclopent- 1-en-3-ylamino)-5-[2-(4-
+chlorophenyl)hydrazinyl]-4H-1,2,4-triazole-3-thiol
+were found to be the most potent. These compounds
+were used for in silico studies, and molecular
+docking was accomplished into the active binding
+site of MERS-CoV helicase nsp13 (21). Further
+studies are required for evaluating the therapeutic
+potential of these newly identified compounds in the
+management of COVID-19 infection.
+
+Passive Immunization/Antibody Therapy/MAb
+
+Monoclonal antibodies (MAbs) may be helpful in
+the intervention of disease in CoV-exposed
+individuals. Patients recovering from SARS showed
+robust neutralizing antibodies against this CoV
+infection (164). A set of MAbs aimed at the MERS-
+CoV S protein-specific domains, comprising six
+specific epitope groups interacting with receptor-
+binding, membrane fusion, and sialic acid-binding
+sites, make up crucial entry tasks of S protein (198,
+199). Passive immunization employing weaker and
+strongly neutralizing antibodies provided
+considerable protection in mice against a MERS-

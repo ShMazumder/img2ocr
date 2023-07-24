@@ -1,0 +1,27 @@
+viruses (161—163, 280). Several attempts are being
+made to design and develop vaccines for CoV
+infection, mostly by targeting the spike glycoprotein.
+Nevertheless, owing to extensive diversity in
+antigenic variants, cross-protection rendered by the
+vaccines is significantly limited, even within the
+strains of a phylogenetic subcluster (104). Due to the
+lack of effective antiviral therapy and vaccines in the
+present scenario, we need to depend solely on
+implementing effective infection control measures to
+lessen the risk of possible nosocomial transmission
+(68). Recently, the receptor for SARS-CoV-2 was
+established as the human angiotensin-converting
+enzyme 2 (hACE2), and the virus was found to enter
+the host cell mainly through endocytosis. It was also
+found that the major components that have a critical
+role in viral entry include PIKfyve, TPC2, and
+cathepsin L. These findings are critical, since the
+components described above might act as candidates
+for vaccines or therapeutic drugs against SARS-
+CoV-2 (293).
+
+The majority of the treatment options and
+strategies that are being evaluated for SARS-CoV-2
+(COVID-19) have been taken from our previous
+experiences in treating SARS-CoV, MERS-CoV, and
+other emerging viral diseases. Several therapeutic
