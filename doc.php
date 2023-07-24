@@ -56,6 +56,6 @@ if (!file_exists($dir)) {
 // Saving the document as OOXML file...
 $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
 
-$fileName = "";
+$fileName = "output";
 $fileLocation = "output_doc/$fileName.docx";
 $objWriter->save($fileLocation);
