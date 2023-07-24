@@ -1,8 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 require_once __DIR__ . '/vendor/autoload.php';
 
 use thiagoalessio\TesseractOCR\TesseractOCR;
@@ -72,3 +68,4 @@ for ($fileIndex = 0; $fileIndex < count($list); $fileIndex++) {
 }
 
 // echo json_encode(array("result" => implode("<br/>", explode("\n", $result))));
+
