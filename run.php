@@ -54,7 +54,9 @@ for ($fileIndex = 0; $fileIndex < count($list); $fileIndex++) {
     // echo $result;
     $outputFileName = $outputDir . DIRECTORY_SEPARATOR . (explode('.', $fileName)[0]) . '.txt';
 
-    file_put_contents($outputFileName, $result);
+    // file_put_contents($outputFileName, $result); // full save
+    file_put_contents($outputFileName, implode("<br/>", array_slice(explode("\n", $result), 1)));
+    break;
 }
 
 // echo json_encode(array("result" => implode("<br/>", explode("\n", $result))));
