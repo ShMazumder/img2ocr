@@ -62,7 +62,8 @@ class PDF extends FPDF
         $this->Ln();
         // Mention in italics
         $this->SetFont('', 'I');
-        $this->Cell(0, 5, '(end of excerpt)');
+        $this->Cell(0, 5, '');
+        // $this->Cell(0, 5, '(end of excerpt)');
     }
 
     function PrintChapter($num, $title, $file)
@@ -81,8 +82,6 @@ $list = scandir($inputDir);
 
 
 $pdf = new PDF('P', 'mm', 'A4');
-$title = count($list) . ' images';
-$pdf->SetTitle($title);
 $pdf->SetAuthor('Mahazabin Sharmin Pia');
 
 $chapterCount = 0;
@@ -108,6 +107,9 @@ for ($fileIndex = 1; $fileIndex <= count($list); $fileIndex++) {
     // $pdf->PrintChapter(2, 'THE PROS AND CONS', '20k_c2.txt');
 
 }
+
+$title = $chapterCount . ' images';
+$pdf->SetTitle($title);
 
 if (!file_exists($outputDir)) {
     mkdir($outputDir, 0777, true);
