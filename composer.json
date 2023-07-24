@@ -1,5 +1,6 @@
 {
     "require": {
-        "thiagoalessio/tesseract_ocr": "^2.12"
+        "thiagoalessio/tesseract_ocr": "^2.12",
+        "phpoffice/phpword": "^1.1"
     }
 }

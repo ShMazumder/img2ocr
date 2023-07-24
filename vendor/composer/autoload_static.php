@@ -11,12 +11,28 @@ class ComposerStaticInit8201729cd47ae6849b9c1e08e98a06c8
         array (
             'thiagoalessio\\TesseractOCR\\' => 27,
         ),
+        'P' => 
+        array (
+            'PhpOffice\\PhpWord\\' => 18,
+        ),
+        'L' => 
+        array (
+            'Laminas\\Escaper\\' => 16,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
         'thiagoalessio\\TesseractOCR\\' => 
         array (
             0 => __DIR__ . '/..' . '/thiagoalessio/tesseract_ocr/src',
+        ),
+        'PhpOffice\\PhpWord\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpoffice/phpword/src/PhpWord',
+        ),
+        'Laminas\\Escaper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laminas/laminas-escaper/src',
         ),
     );
 
