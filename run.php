@@ -55,9 +55,20 @@ for ($fileIndex = 0; $fileIndex < count($list); $fileIndex++) {
     $outputFileName = $outputDir . DIRECTORY_SEPARATOR . (explode('.', $fileName)[0]) . '.txt';
 
     // file_put_contents($outputFileName, $result); // full save
-    file_put_contents($outputFileName, implode("<br/>", array_slice(explode("\n", $result), 1)));
+
+    // save without first line and removing single breaks.
+    $contents = explode("\n", $result); // break the result by newline: array
+    $contents = array_slice($contents, 1); // remove first line : array
+    $contents = implode(" ", $contents); // join the array using space : string
+    $contents = explode("  ", $contents); // break content using double space : array
+    $contents = implode("<br/>", $contents); // join the array with break
+
+
+    file_put_contents($outputFileName, $contents);
 
     echo $outputFileName . "=OK" . "<br/>";
+
+    break;
 }
 
 // echo json_encode(array("result" => implode("<br/>", explode("\n", $result))));
