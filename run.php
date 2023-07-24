@@ -63,8 +63,6 @@ for ($fileIndex = 0; $fileIndex < count($list); $fileIndex++) {
     file_put_contents($outputFileName, $contents);
 
     echo $outputFileName . "=OK" . "<br/>";
-
 }
 
 // echo json_encode(array("result" => implode("<br/>", explode("\n", $result))));
-
