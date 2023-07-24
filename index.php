@@ -13,6 +13,8 @@ if (strcasecmp($action, "OCR") === 0) {
     require "run.php";
 } else if (strcasecmp($action, "PDF") === 0) {
     require "pdf.php";
+} else if (strcasecmp($action, "DOC") === 0) {
+    require "doc.php";
 } else if (strcasecmp($action, "VIEW") === 0) {
     require "view.php";
 } else {
@@ -26,6 +28,10 @@ if (strcasecmp($action, "OCR") === 0) {
 
     echo "<div style='width: 200px'>";
     echo "<a href='index.php?action=pdf'>PDF<a>";
+    echo "</div>";
+
+    echo "<div style='width: 200px'>";
+    echo "<a href='index.php?action=doc'>DOC<a>";
     echo "</div>";
 
     echo "<div style='width: 200px'>";
