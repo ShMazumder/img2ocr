@@ -57,7 +57,7 @@ for ($fileIndex = 0; $fileIndex < count($list); $fileIndex++) {
     $contents = array_slice($contents, 1); // remove first line : array
     $contents = implode(" ", $contents); // join the array using space : string
     $contents = explode("  ", $contents); // break content using double space : array
-    $contents = implode("<br/>", $contents); // join the array with break
+    $contents = implode("\n", $contents); // join the array with break
 
 
     file_put_contents($outputFileName, $contents);

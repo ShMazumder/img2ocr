@@ -1,45 +1,7 @@
 <?php
 
-require __DIR__ . "/fpdf186/fpdf.php";
+require __DIR__ . "/vendor/fpdf186/fpdf.php";
 
-$inputDir = "output";
-$outputDir = "output/pdf";
-
-$list = scandir($inputDir);
-
-
-$pdf = new PDF('P', 'mm', 'A4');
-$title = count($list) . ' images';
-$pdf->SetTitle($title);
-$pdf->SetAuthor('Mahazabin Sharmin Pia');
-
-for ($fileIndex = 1; $fileIndex <= count($list); $fileIndex++) {
-    # code...
-
-    $fileName = $list[$fileIndex];
-    $txt_path = $inputDir . DIRECTORY_SEPARATOR . $fileName;
-
-    if (in_array($fileName, array('.', '..', '.DS_Store'))) {
-        continue;
-    }
-
-    if (!is_file($txt_path)) {
-        continue;
-    }
-
-    $pdf->PrintChapter($fileIndex, "File: " . $fileName, $txt_path);
-    // $pdf->PrintChapter(2, 'THE PROS AND CONS', '20k_c2.txt');
-
-}
-
-if (!file_exists($outputDir)) {
-    mkdir($outputDir, 0777, true);
-}
-
-$outputFileName = $outputDir . DIRECTORY_SEPARATOR . $title . '.pdf';
-$pdf->Output('F', $outputFileName);
-
-echo "<a target='_blank' href='$outputFileName'>See file</a>";
 
 class PDF extends FPDF
 {
@@ -110,3 +72,48 @@ class PDF extends FPDF
         $this->ChapterBody($file);
     }
 }
+
+
+$inputDir = "output";
+$outputDir = "output_pdf";
+
+$list = scandir($inputDir);
+
+
+$pdf = new PDF('P', 'mm', 'A4');
+$title = count($list) . ' images';
+$pdf->SetTitle($title);
+$pdf->SetAuthor('Mahazabin Sharmin Pia');
+
+$chapterCount = 0;
+for ($fileIndex = 1; $fileIndex <= count($list); $fileIndex++) {
+    # code...
+
+    $fileName = $list[$fileIndex - 1];
+    $txt_path = $inputDir . DIRECTORY_SEPARATOR . $fileName;
+
+    if (in_array($fileName, array('.', '..', '.DS_Store'))) {
+        continue;
+    }
+
+    if (!is_file($txt_path)) {
+        continue;
+    }
+
+    if (is_dir($txt_path)) {
+        continue;
+    }
+
+    $pdf->PrintChapter(++$chapterCount, "File: " . $fileName, $txt_path);
+    // $pdf->PrintChapter(2, 'THE PROS AND CONS', '20k_c2.txt');
+
+}
+
+if (!file_exists($outputDir)) {
+    mkdir($outputDir, 0777, true);
+}
+
+$outputFileName = $outputDir . DIRECTORY_SEPARATOR . $title . '.pdf';
+$pdf->Output('F', $outputFileName);
+
+echo "<a target='_blank' href='$outputFileName'>See file</a>";
