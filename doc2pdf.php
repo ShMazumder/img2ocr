@@ -11,13 +11,6 @@ $outputDir = "output_doc";
 $list = scandir($inputDir);
 $chapterCount = 0;
 
-// Set PDF renderer.
-// Make sure you have `tecnickcom/tcpdf` in your composer dependencies.
-\PhpOffice\PhpWord\Settings::setPdfRendererName(\PhpOffice\PhpWord\Settings::PDF_RENDERER_TCPDF);
-// Path to directory with tcpdf.php file.
-// Rigth now `TCPDF` writer is depreacted. Consider to use `DomPDF` or `MPDF` instead.
-\PhpOffice\PhpWord\Settings::setPdfRendererPath('vendor/tecnickcom/tcpdf');
-
 for ($fileIndex = 1; $fileIndex <= count($list); $fileIndex++) {
 
 
@@ -85,13 +78,21 @@ for ($fileIndex = 1; $fileIndex <= count($list); $fileIndex++) {
     \PhpOffice\PhpWord\Settings::setTempDir($dir);
 
     // Saving the document as OOXML file...
-    $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+    // $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
 
     $fileName = explode(".", $fileName)[0];
     $fileLocation = "output_doc/$fileName.docx";
-    $objWriter->save($fileLocation);
+    // $objWriter->save($fileLocation);
 
 
-    // $objWriter = \PhpOffice\PhpWord\IOFactory::load('document.docx', 'Word2007');
-    $objWriter->save("output_pdf/$fileName.pdf", 'PDF');
+    // Set PDF renderer.
+    // Make sure you have `tecnickcom/tcpdf` in your composer dependencies.
+    \PhpOffice\PhpWord\Settings::setPdfRendererName(\PhpOffice\PhpWord\Settings::PDF_RENDERER_TCPDF);
+    // Path to directory with tcpdf.php file.
+    // Rigth now `TCPDF` writer is depreacted. Consider to use `DomPDF` or `MPDF` instead.
+    \PhpOffice\PhpWord\Settings::setPdfRendererPath('vendor/tecnickcom/tcpdf');
+
+
+    $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'PDF');
+    $objWriter->save("output_pdf/$fileName.pdf");
 }
