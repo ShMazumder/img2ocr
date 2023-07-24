@@ -11,9 +11,19 @@ $chapterCount = 0;
 
 // Creating the new document...
 $phpWord = new \PhpOffice\PhpWord\PhpWord();
-
+$phpWord->setDefaultFontName('Times New Roman');
+$phpWord->setDefaultFontSize(10);
 // each page 
 $section = $phpWord->addSection();
+
+$fontStyle = new \PhpOffice\PhpWord\Style\Font();
+$fontStyle->setBold(true);
+$fontStyle->setName('Times New Roman');
+$fontStyle->setSize(13);
+$header = $section->addHeader();
+// $header->addWatermark('resources/_earth.jpg', array('marginTop' => 200, 'marginLeft' => 55));
+$header->addText("Project Task");
+$header->setFontStyle($fontStyle);
 
 for ($fileIndex = 1; $fileIndex <= count($list); $fileIndex++) {
     $fileName = $list[$fileIndex - 1];
@@ -31,8 +41,8 @@ for ($fileIndex = 1; $fileIndex <= count($list); $fileIndex++) {
         continue;
     }
 
-    $phpWord->setDefaultFontName('Times New Roman');
-    $phpWord->setDefaultFontSize(10);
+    echo $txt_path;
+    echo "<br/>";
 
     // $fontStyle = new \PhpOffice\PhpWord\Style\Font();
     // $fontStyle->setBold(true);
