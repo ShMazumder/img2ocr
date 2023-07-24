@@ -18,7 +18,19 @@ if (strcasecmp($action, "OCR") === 0) {
 } else {
     // upload options?
 
+    echo "<div style='width:100%; display:flex; justify-content:around;'>";
+
+    echo "<div style='width: 200px'>";
     echo "<a href='index.php?action=ocr'>OCR<a>";
+    echo "</div>";
+
+    echo "<div style='width: 200px'>";
     echo "<a href='index.php?action=pdf'>PDF<a>";
+    echo "</div>";
+
+    echo "<div style='width: 200px'>";
     echo "<a href='index.php?action=view'>VIEW<a>";
+    echo "</div>";
+
+    echo "</div>";
 }
