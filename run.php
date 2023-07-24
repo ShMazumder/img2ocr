@@ -56,7 +56,8 @@ for ($fileIndex = 0; $fileIndex < count($list); $fileIndex++) {
 
     // file_put_contents($outputFileName, $result); // full save
     file_put_contents($outputFileName, implode("<br/>", array_slice(explode("\n", $result), 1)));
-    break;
+
+    echo $outputFileName . "=OK" . "<br/>";
 }
 
 // echo json_encode(array("result" => implode("<br/>", explode("\n", $result))));
