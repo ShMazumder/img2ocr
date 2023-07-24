@@ -84,6 +84,8 @@ $list = scandir($inputDir);
 $pdf = new PDF('P', 'mm', 'A4');
 $pdf->SetAuthor('Mahazabin Sharmin Pia');
 
+$title = 'Project Task';
+$pdf->SetTitle($title);
 $chapterCount = 0;
 for ($fileIndex = 1; $fileIndex <= count($list); $fileIndex++) {
     # code...
@@ -108,8 +110,6 @@ for ($fileIndex = 1; $fileIndex <= count($list); $fileIndex++) {
 
 }
 
-$title = $chapterCount . ' images';
-$pdf->SetTitle($title);
 
 if (!file_exists($outputDir)) {
     mkdir($outputDir, 0777, true);
