@@ -8,14 +8,6 @@ $outputDir = "output/pdf";
 $list = scandir($inputDir);
 
 
-// $pdf = new FPDF('P', 'mm', 'A4');
-// $pdf->AddPage();
-// $pdf->SetFont('Times', '', 10);
-// $pdf->Cell(40, 10, 'Hello World!');
-// $pdf->Output();
-
-
-
 $pdf = new PDF('P', 'mm', 'A4');
 $title = count($list) . ' images';
 $pdf->SetTitle($title);
