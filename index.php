@@ -17,6 +17,8 @@ if (strcasecmp($action, "OCR") === 0) {
     require "doc.php";
 } else if (strcasecmp($action, "multidoc") === 0) {
     require "multiple_doc.php";
+} else if (strcasecmp($action, "doc2pdf") === 0) {
+    require "doc2pdf.php";
 } else if (strcasecmp($action, "VIEW") === 0) {
     require "view.php";
 } else {
@@ -38,6 +40,10 @@ if (strcasecmp($action, "OCR") === 0) {
 
     echo "<div style='width: 200px'>";
     echo "<a href='index.php?action=multidoc'>Multi DOC<a>";
+    echo "</div>";
+
+    echo "<div style='width: 200px'>";
+    echo "<a href='index.php?action=doc2pdf'>Doc To PDF<a>";
     echo "</div>";
 
     echo "<div style='width: 200px'>";

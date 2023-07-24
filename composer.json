@@ -1,6 +1,7 @@
 {
     "require": {
         "thiagoalessio/tesseract_ocr": "^2.12",
-        "phpoffice/phpword": "^1.1"
+        "phpoffice/phpword": "^1.1",
+        "tecnickcom/tcpdf": "^6.6"
     }
 }
