@@ -41,15 +41,22 @@ for ($fileIndex = 1; $fileIndex <= count($list); $fileIndex++) {
         continue;
     }
 
-    echo $txt_path;
-    echo "<br/>";
+    // echo $txt_path;
+    // echo "<br/>";
 
     // $fontStyle = new \PhpOffice\PhpWord\Style\Font();
     // $fontStyle->setBold(true);
     // $fontStyle->setName('Tahoma');
     // $fontStyle->setSize(13);
+
+    $pageTitle = explode('.', explode("/", $txt_path)[1])[0];
+    $myTextElement = $section->addText(htmlspecialchars($pageTitle));
+    $myTextElement->setFontStyle($fontStyle);
+
+    $section->addTextBreak(2);
+
     $content = file_get_contents($txt_path);
-    $myTextElement = $section->addText($content);
+    $myTextElement = $section->addText(htmlspecialchars($content));
     // $myTextElement->setFontStyle($fontStyle);
     $section->addPageBreak();
 }
