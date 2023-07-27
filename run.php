@@ -10,8 +10,8 @@ if (strpos($user_agent, "Win") !== FALSE)
 elseif (strpos($user_agent, "Mac") !== FALSE)
     $os = "Mac";
 
-$inputDir = "imgs";
-$outputDir = "output";
+$inputDir = "imgs/emonbhai";
+$outputDir = "output/emonbhai";
 
 $ocr = new TesseractOCR();
 if ($os === "Windows") {
