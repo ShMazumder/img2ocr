@@ -48,7 +48,9 @@ for ($fileIndex = 0; $fileIndex < count($list); $fileIndex++) {
     $result = $ocr->run();
 
     // echo $result;
-    $outputFileName = $outputDir . DIRECTORY_SEPARATOR . (explode('.', $fileName)[0]) . '.txt';
+    $fileNameArr = explode('.', $fileName);
+    $fileNameArr = array_slice($fileNameArr, 0, count($fileNameArr) - 1);
+    $outputFileName = $outputDir . DIRECTORY_SEPARATOR . implode($fileNameArr) . '.txt';
 
     // file_put_contents($outputFileName, $result); // full save
 
