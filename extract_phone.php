@@ -44,7 +44,9 @@ function extractBangladeshiPhoneNumbersAndEmails($fileContent) {
     $emails = [];
 
     // Regular expression pattern to match Bangladeshi cell phone numbers
-    $phonePattern = '/\+88-\d{2}-\d{8}|\+880\d{2}\d{8}|01\d{9}/';
+    // $phonePattern = '/\+88-\d{2}-\d{8}|\+880\d{2}\d{8}|01\d{9}/'; // working
+    $phonePattern = '/\+88(?:-\d{2}-|\s?\d{2}\s?)\d{8}|\+880\s?\d{10}|01\d{9}/'; 
+
 
     // Regular expression pattern to match email addresses
     $emailPattern = '/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/';
