@@ -26,7 +26,8 @@ for ($fileIndex = 1; $fileIndex <= count($list); $fileIndex++) {
 
     // echo $fileContent;
 
-    $extractedData = extractPhoneNumbersAndEmails($fileContent);
+    // $extractedData = extractPhoneNumbersAndEmails($fileContent);
+    $extractedData = extractBangladeshiPhoneNumbersAndEmails($fileContent);
     $phoneNumbers = $extractedData['phoneNumbers'];
     $emails = $extractedData['emails'];
 
@@ -37,6 +38,36 @@ for ($fileIndex = 1; $fileIndex <= count($list); $fileIndex++) {
 
     // break;
 }
+
+function extractBangladeshiPhoneNumbersAndEmails($fileContent) {
+    $phoneNumbers = [];
+    $emails = [];
+
+    // Regular expression pattern to match Bangladeshi cell phone numbers
+    $phonePattern = '/\+88-\d{2}-\d{8}|\+880\d{2}\d{8}|01\d{9}/';
+
+    // Regular expression pattern to match email addresses
+    $emailPattern = '/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/';
+
+    // Match phone numbers
+    preg_match_all($phonePattern, $fileContent, $matches);
+    if (!empty($matches[0])) {
+        $phoneNumbers = $matches[0];
+    }
+
+    // Match email addresses
+    preg_match_all($emailPattern, $fileContent, $matches);
+    if (!empty($matches[0])) {
+        $emails = $matches[0];
+    }
+
+    return [
+        'phoneNumbers' => $phoneNumbers,
+        'emails' => $emails
+    ];
+}
+
+
 
 function extractPhoneNumbersAndEmails($fileContent)
 {
