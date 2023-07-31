@@ -48,6 +48,8 @@ for ($inputDirIndex = 0; $inputDirIndex < count($listOfInputDir); $inputDirIndex
 
 function processDir($ocr, $inputDir, $outputDir)
 {
+    $removeFirstList = false;
+
     if (!file_exists($outputDir)) {
         mkdir($outputDir, 0777, true);
     }
@@ -75,7 +77,12 @@ function processDir($ocr, $inputDir, $outputDir)
 
         // $ocr->configFile('pdf');
         // $ocr->setOutputFile('output/IMG_0101.pdf');
-        $result = $ocr->run();
+        try {
+            $result = $ocr->run();
+        } catch (\Throwable $th) {
+            echo $img_path . "=Failed (" . $th->getMessage() . ")";
+            continue;
+        }
 
         // echo $result;
         $fileNameArr = explode('.', $fileName);
@@ -86,7 +93,11 @@ function processDir($ocr, $inputDir, $outputDir)
 
         // save without first line and removing single breaks.
         $contents = explode("\n", $result); // break the result by newline: array
-        $contents = array_slice($contents, 1); // remove first line : array
+
+        if ($removeFirstList) {
+            $contents = array_slice($contents, 1); // remove first line : array
+        }
+
         $contents = implode(" ", $contents); // join the array using space : string
         $contents = explode("  ", $contents); // break content using double space : array
         $contents = implode(" ", $contents); // join the array with break
