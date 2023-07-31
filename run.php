@@ -22,8 +22,8 @@ if ($os === "Windows") {
     $ocr->executable("/usr/local/bin/tesseract");
 }
 
-$inputDirRoot = "imgs/class6/";
-$outputDirRoot = "output/class6/";
+$inputDirRoot = "imgs/class7/";
+$outputDirRoot = "output/class7/";
 
 // echo json_encode(array("result" => implode("<br/>", explode("\n", $result))));
 $listOfInputDir = scandir($inputDirRoot);
