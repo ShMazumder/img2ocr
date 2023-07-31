@@ -28,14 +28,25 @@ $outputDirRoot = "output/class6/";
 // echo json_encode(array("result" => implode("<br/>", explode("\n", $result))));
 $listOfInputDir = scandir($inputDirRoot);
 
-for ($inputDirIndex=0; $inputDirIndex < count($listOfInputDir); $inputDirIndex++) { 
-    $inputDir = $inputDirRoot.DIRECTORY_SEPARATOR.$listOfInputDir[$inputDirIndex];
-    $outputDir = $outputDirRoot.DIRECTORY_SEPARATOR.$listOfInputDir[$inputDirIndex];
+for ($inputDirIndex = 0; $inputDirIndex < count($listOfInputDir); $inputDirIndex++) {
 
-    processFile($ocr, $inputDir, $outputDir);
+    $currentItem = $listOfInputDir[$inputDirIndex];
+    $inputDir = $inputDirRoot . DIRECTORY_SEPARATOR . $currentItem;
+    $outputDir = $outputDirRoot . DIRECTORY_SEPARATOR . $currentItem;
+
+    if (in_array($currentItem, array('.', '..', '.DS_Store'))) {
+        continue;
+    }
+
+    if (!is_dir($inputDir)) {
+        echo "Skipped: " . $inputDir;
+        continue;
+    }
+
+    processDir($ocr, $inputDir, $outputDir);
 }
 
-function processFile($ocr, $inputDir, $outputDir)
+function processDir($ocr, $inputDir, $outputDir)
 {
     if (!file_exists($outputDir)) {
         mkdir($outputDir, 0777, true);
