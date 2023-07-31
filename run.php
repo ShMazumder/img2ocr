@@ -10,8 +10,8 @@ if (strpos($user_agent, "Win") !== FALSE)
 elseif (strpos($user_agent, "Mac") !== FALSE)
     $os = "Mac";
 
-$inputDir = "imgs/class6/Art GRADE 6";
-$outputDir = "output/class6/Art GRADE 6";
+$inputDir = "imgs/class6/";
+$outputDir = "output/class6/";
 
 $ocr = new TesseractOCR();
 $ocr->lang('ben', 'eng');
