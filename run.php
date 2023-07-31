@@ -10,10 +10,14 @@ if (strpos($user_agent, "Win") !== FALSE)
 elseif (strpos($user_agent, "Mac") !== FALSE)
     $os = "Mac";
 
-$inputDir = "imgs/emonbhai";
-$outputDir = "output/emonbhai";
+$inputDir = "imgs/class6/Art GRADE 6";
+$outputDir = "output/class6/Art GRADE 6";
 
 $ocr = new TesseractOCR();
+$ocr->lang('ben', 'eng');
+$langs = $ocr->availableLanguages();
+var_dump($langs);
+
 if ($os === "Windows") {
     $ocr->executable("C:\Program Files\Tesseract-OCR\\tesseract.exe");
 } elseif ($os === "Mac") {
@@ -21,6 +25,9 @@ if ($os === "Windows") {
     $ocr->executable("/usr/local/bin/tesseract");
 }
 
+if (!file_exists($outputDir)) {
+    mkdir($outputDir, 0777, true);
+}
 
 $list = scandir($inputDir);
 
