@@ -10,9 +10,6 @@ if (strpos($user_agent, "Win") !== FALSE)
 elseif (strpos($user_agent, "Mac") !== FALSE)
     $os = "Mac";
 
-$inputDir = "imgs/class6/";
-$outputDir = "output/class6/";
-
 $ocr = new TesseractOCR();
 $ocr->lang('ben', 'eng');
 $langs = $ocr->availableLanguages();
@@ -25,53 +22,67 @@ if ($os === "Windows") {
     $ocr->executable("/usr/local/bin/tesseract");
 }
 
-if (!file_exists($outputDir)) {
-    mkdir($outputDir, 0777, true);
-}
-
-$list = scandir($inputDir);
-
-for ($fileIndex = 0; $fileIndex < count($list); $fileIndex++) {
-    # code...
-
-    // echo $list[$fileIndex];
-    // echo "<br/>";
-
-    $fileName = $list[$fileIndex];
-    $img_path = $inputDir . DIRECTORY_SEPARATOR . $fileName;
-
-    if (in_array($fileName, array('.', '..', '.DS_Store'))) {
-        continue;
-    }
-
-    if (!is_file($img_path)) {
-        continue;
-    }
-
-    $ocr->image($img_path);
-
-    // $ocr->configFile('pdf');
-    // $ocr->setOutputFile('output/IMG_0101.pdf');
-    $result = $ocr->run();
-
-    // echo $result;
-    $fileNameArr = explode('.', $fileName);
-    $fileNameArr = array_slice($fileNameArr, 0, count($fileNameArr) - 1);
-    $outputFileName = $outputDir . DIRECTORY_SEPARATOR . implode($fileNameArr) . '.txt';
-
-    // file_put_contents($outputFileName, $result); // full save
-
-    // save without first line and removing single breaks.
-    $contents = explode("\n", $result); // break the result by newline: array
-    $contents = array_slice($contents, 1); // remove first line : array
-    $contents = implode(" ", $contents); // join the array using space : string
-    $contents = explode("  ", $contents); // break content using double space : array
-    $contents = implode(" ", $contents); // join the array with break
-
-
-    file_put_contents($outputFileName, $contents);
-
-    echo $outputFileName . "=OK" . "<br/>";
-}
+$inputDirRoot = "imgs/class6/";
+$outputDirRoot = "output/class6/";
 
 // echo json_encode(array("result" => implode("<br/>", explode("\n", $result))));
+$listOfInputDir = scandir($inputDirRoot);
+
+for ($inputDirIndex=0; $inputDirIndex < count($listOfInputDir); $inputDirIndex++) { 
+    $inputDir = $inputDirRoot.DIRECTORY_SEPARATOR.$listOfInputDir[$inputDirIndex];
+    $outputDir = $outputDirRoot.DIRECTORY_SEPARATOR.$listOfInputDir[$inputDirIndex];
+
+    processFile($ocr, $inputDir, $outputDir);
+}
+
+function processFile($ocr, $inputDir, $outputDir)
+{
+    if (!file_exists($outputDir)) {
+        mkdir($outputDir, 0777, true);
+    }
+
+    $list = scandir($inputDir);
+
+    for ($fileIndex = 0; $fileIndex < count($list); $fileIndex++) {
+        # code...
+
+        // echo $list[$fileIndex];
+        // echo "<br/>";
+
+        $fileName = $list[$fileIndex];
+        $img_path = $inputDir . DIRECTORY_SEPARATOR . $fileName;
+
+        if (in_array($fileName, array('.', '..', '.DS_Store'))) {
+            continue;
+        }
+
+        if (!is_file($img_path)) {
+            continue;
+        }
+
+        $ocr->image($img_path);
+
+        // $ocr->configFile('pdf');
+        // $ocr->setOutputFile('output/IMG_0101.pdf');
+        $result = $ocr->run();
+
+        // echo $result;
+        $fileNameArr = explode('.', $fileName);
+        $fileNameArr = array_slice($fileNameArr, 0, count($fileNameArr) - 1);
+        $outputFileName = $outputDir . DIRECTORY_SEPARATOR . implode($fileNameArr) . '.txt';
+
+        // file_put_contents($outputFileName, $result); // full save
+
+        // save without first line and removing single breaks.
+        $contents = explode("\n", $result); // break the result by newline: array
+        $contents = array_slice($contents, 1); // remove first line : array
+        $contents = implode(" ", $contents); // join the array using space : string
+        $contents = explode("  ", $contents); // break content using double space : array
+        $contents = implode(" ", $contents); // join the array with break
+
+
+        file_put_contents($outputFileName, $contents);
+
+        echo $outputFileName . "=OK" . "<br/>";
+    }
+}
