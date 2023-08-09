@@ -3,27 +3,31 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 require_once __DIR__ . '/bootstrap.php';
 
-$inputDir = "output";
-$outputDir = "output_doc";
+$inputDir = "output/project-plan-d/ppd";
+$outputDir = "output_doc/project-plan-d/ppd";
 
 $list = scandir($inputDir);
 $chapterCount = 0;
 
+$combined_doc = false;
+
 
 for ($fileIndex = 1; $fileIndex <= count($list); $fileIndex++) {
 
+    if (!isset($phpWord) || !$combined_doc) {
+        // Creating the new document...
+        $phpWord = new \PhpOffice\PhpWord\PhpWord();
+    }
 
-    // Creating the new document...
-    $phpWord = new \PhpOffice\PhpWord\PhpWord();
-    $phpWord->setDefaultFontName('Times New Roman');
-    $phpWord->setDefaultFontSize(10);
+    $phpWord->setDefaultFontName('Arial');
+    $phpWord->setDefaultFontSize(14);
     // each page 
     $section = $phpWord->addSection();
 
     $fontStyle = new \PhpOffice\PhpWord\Style\Font();
     $fontStyle->setBold(true);
-    $fontStyle->setName('Times New Roman');
-    $fontStyle->setSize(13);
+    $fontStyle->setName('Arial');
+    $fontStyle->setSize(16);
     $header = $section->addHeader();
     // $header->addWatermark('resources/_earth.jpg', array('marginTop' => 200, 'marginLeft' => 55));
     $header->addText("Project Task");
@@ -79,7 +83,18 @@ for ($fileIndex = 1; $fileIndex <= count($list); $fileIndex++) {
     // Saving the document as OOXML file...
     $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
 
-    $fileName = explode(".", $fileName)[0];
-    $fileLocation = "output_doc/$fileName.docx";
-    $objWriter->save($fileLocation);
+    if (!$combined_doc) {
+        $fileName = explode(".", $fileName)[0];
+        $fileLocation = "$outputDir/$fileName.docx";
+        if (!file_exists($outputDir)) {
+            mkdir($outputDir, 0777, true);
+        }
+        $objWriter->save($fileLocation);
+    } else if ($fileIndex <= count($list)) {
+        $fileLocation = "$outputDir/merged-all.docx";
+        if (!file_exists($outputDir)) {
+            mkdir($outputDir, 0777, true);
+        }
+        $objWriter->save($fileLocation);
+    }
 }
