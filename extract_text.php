@@ -44,10 +44,10 @@ $ocr->lang('ben', 'eng');
 // var_dump($langs);
 
 if ($os === "Windows") {
-    $ocr->executable("C:\Program Files\Tesseract-OCR\\tesseract.exe");
+    // $ocr->executable("C:\Program Files\Tesseract-OCR\\tesseract.exe");
 } elseif ($os === "Mac") {
-    $ocr->tempDir("/tmp");
-    $ocr->executable("/usr/local/bin/tesseract");
+    // $ocr->tempDir("/tmp");
+    // $ocr->executable("/usr/local/bin/tesseract");
 }else{
     // echo "os=$os";
     // $ocr->tempDir("/tmp");
