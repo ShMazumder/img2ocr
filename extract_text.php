@@ -34,7 +34,8 @@ if (strpos($user_agent, "Win") !== FALSE)
 elseif (strpos($user_agent, "Mac") !== FALSE)
     $os = "Mac";
 
-echo "os=$os";
+echo "<br/>";
+echo "os=$os user_agent=$user_agent";
 echo "<br/>";
 
 $ocr = new TesseractOCR();
