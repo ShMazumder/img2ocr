@@ -44,6 +44,10 @@ if ($os === "Windows") {
 } elseif ($os === "Mac") {
     $ocr->tempDir("/tmp");
     $ocr->executable("/usr/local/bin/tesseract");
+}else{
+    echo "os=$os";
+    $ocr->tempDir("/tmp");
+    $ocr->executable("/usr/local/bin/tesseract");
 }
 
 
