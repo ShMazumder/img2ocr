@@ -39,7 +39,7 @@ if (strcasecmp($action, "OCR") === 0) {
         echo "Stored in: " . $_FILES["fileToUpload"]["tmp_name"];
 
         $target_dir = "uploads/".date('Y-m-d H-i-s')."";
-        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+        $target_file = $target_dir .DIRECTORY_SEPARATOR. basename($_FILES["fileToUpload"]["name"]);
         if(!file_exists($target_dir)){
             mkdir($target_dir, 0777, true);
         }

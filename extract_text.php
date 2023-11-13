@@ -3,6 +3,30 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use thiagoalessio\TesseractOCR\TesseractOCR;
 
+define ('K_PATH_MAIN', dirname(__FILE__).'/');
+
+if (isset($_SERVER['HTTP_HOST']) and (!empty($_SERVER['HTTP_HOST']))) {
+    if (isset($_SERVER['HTTPS']) and (!empty($_SERVER['HTTPS'])) and (strtolower($_SERVER['HTTPS']) != 'off')) {
+        $host_protocol = 'https://';
+    } else {
+        $host_protocol = 'http://';
+    }
+    $host = $_SERVER['HTTP_HOST'];
+    $host .= str_replace('\\', '/', substr(K_PATH_MAIN, (strlen($_SERVER['DOCUMENT_ROOT']) - 0)));
+
+    // echo "<br/>";
+    // echo K_PATH_MAIN;
+    // echo "<br/>";
+    // echo $_SERVER['DOCUMENT_ROOT']." ". (strlen($_SERVER['DOCUMENT_ROOT']) - 0). " ".substr(K_PATH_MAIN, (strlen($_SERVER['DOCUMENT_ROOT']) - 0));
+    // echo "<br/>";
+    // echo $host;
+    // echo "<br/>";
+    
+} else {
+    $host_protocol = 'http://';
+    $host = 'localhost/img2ocr';
+}
+
 $user_agent = getenv("HTTP_USER_AGENT");
 
 if (strpos($user_agent, "Win") !== FALSE)
@@ -22,32 +46,39 @@ if ($os === "Windows") {
     $ocr->executable("/usr/local/bin/tesseract");
 }
 
-$inputDirRoot = $target_dir; //"uploads";
-$outputDirRoot = "results/" . explode("/", $target_dir)[1];
+
+$inputDirRoot = dirname(__FILE__) . DIRECTORY_SEPARATOR . $target_dir . DIRECTORY_SEPARATOR; //"uploads";
+$outputDirRoot = dirname(__FILE__) . DIRECTORY_SEPARATOR . "results/" . explode("/", $target_dir)[1];
 if (!file_exists($outputDirRoot)) {
     mkdir($outputDirRoot, 0777, true);
 }
+processDir($ocr, $inputDirRoot, $outputDirRoot);
 
-// echo json_encode(array("result" => implode("<br/>", explode("\n", $result))));
-$listOfInputDir = scandir($inputDirRoot);
+// // echo json_encode(array("result" => implode("<br/>", explode("\n", $result))));
+// $listOfInputDir = scandir($inputDirRoot);
+// // echo $inputDirRoot;
+// // var_dump($listOfInputDir);
+// for ($inputDirIndex = 0; $inputDirIndex < count($listOfInputDir); $inputDirIndex++) {
 
-for ($inputDirIndex = 0; $inputDirIndex < count($listOfInputDir); $inputDirIndex++) {
+//     $currentItem = $listOfInputDir[$inputDirIndex];
 
-    $currentItem = $listOfInputDir[$inputDirIndex];
-    $inputDir = $inputDirRoot . DIRECTORY_SEPARATOR . $currentItem;
-    $outputDir = $outputDirRoot . DIRECTORY_SEPARATOR . $currentItem;
+//     if (in_array($currentItem, array('.', '..', '.DS_Store'))) {
+//         continue;
+//     }
 
-    if (in_array($currentItem, array('.', '..', '.DS_Store'))) {
-        continue;
-    }
+//     $inputDir = $inputDirRoot . DIRECTORY_SEPARATOR . $currentItem;
+//     $outputDir = $outputDirRoot . DIRECTORY_SEPARATOR . $currentItem;
 
-    if (!is_dir($inputDir)) {
-        echo "Skipped: " . $inputDir;
-        continue;
-    }
+//     $inputDir = str_replace(DIRECTORY_SEPARATOR.DIRECTORY_SEPARATOR, DIRECTORY_SEPARATOR, $inputDir);
+//     $outputDir = str_replace(DIRECTORY_SEPARATOR.DIRECTORY_SEPARATOR, DIRECTORY_SEPARATOR, $outputDir);
 
-    processDir($ocr, $inputDir, $outputDir);
-}
+//     if (!is_dir($inputDir)) {
+//         echo "Dir Skipped: " . $inputDir;
+//         continue;
+//     }
+
+//     processDir($ocr, $inputDir, $outputDir);
+// }
 
 function processDir($ocr, $inputDir, $outputDir)
 {
@@ -66,11 +97,13 @@ function processDir($ocr, $inputDir, $outputDir)
         // echo "<br/>";
 
         $fileName = $list[$fileIndex];
-        $img_path = $inputDir . DIRECTORY_SEPARATOR . $fileName;
 
         if (in_array($fileName, array('.', '..', '.DS_Store'))) {
             continue;
         }
+
+        $img_path = $inputDir . DIRECTORY_SEPARATOR . $fileName;
+        $img_path = str_replace(DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR, DIRECTORY_SEPARATOR, $img_path);
 
         if (!is_file($img_path)) {
             continue;
@@ -108,6 +141,9 @@ function processDir($ocr, $inputDir, $outputDir)
 
         file_put_contents($outputFileName, $contents);
 
-        echo $outputFileName . "=OK" . "<br/>";
+        $publicUrl = str_replace(dirname(__FILE__), $GLOBALS['host'], $outputFileName);
+        $publicUrl = $GLOBALS['host_protocol'] . str_replace(DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR, DIRECTORY_SEPARATOR, $publicUrl);
+        echo "<br/>";
+        echo  "<a href='$publicUrl' download>" . $publicUrl . "</a>";
     }
 }
