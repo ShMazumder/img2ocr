@@ -3,7 +3,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use thiagoalessio\TesseractOCR\TesseractOCR;
 
-define ('K_PATH_MAIN', dirname(__FILE__).'/');
+define('K_PATH_MAIN', dirname(__FILE__) . '/');
 
 if (isset($_SERVER['HTTP_HOST']) and (!empty($_SERVER['HTTP_HOST']))) {
     if (isset($_SERVER['HTTPS']) and (!empty($_SERVER['HTTPS'])) and (strtolower($_SERVER['HTTPS']) != 'off')) {
@@ -21,7 +21,7 @@ if (isset($_SERVER['HTTP_HOST']) and (!empty($_SERVER['HTTP_HOST']))) {
     // echo "<br/>";
     // echo $host;
     // echo "<br/>";
-    
+
 } else {
     $host_protocol = 'http://';
     $host = 'localhost/img2ocr';
@@ -43,15 +43,20 @@ $ocr->lang('ben', 'eng');
 // $langs = $ocr->availableLanguages();
 // var_dump($langs);
 
-if ($os === "Windows") {
-    // $ocr->executable("C:\Program Files\Tesseract-OCR\\tesseract.exe");
-} elseif ($os === "Mac") {
-    // $ocr->tempDir("/tmp");
-    // $ocr->executable("/usr/local/bin/tesseract");
-}else{
-    // echo "os=$os";
-    // $ocr->tempDir("/tmp");
-    // $ocr->executable("/usr/local/bin/tesseract");
+if (strcasecmp($_SERVER['HTTP_HOST'], "localhost") === 0) {
+    if ($os === "Windows") {
+        $ocr->executable("C:\Program Files\Tesseract-OCR\\tesseract.exe");
+    } elseif ($os === "Mac") {
+        $ocr->tempDir("/tmp");
+        $ocr->executable("/usr/local/bin/tesseract");
+    } else {
+        // echo "os=$os";
+        // $ocr->tempDir("/tmp");
+        // $ocr->executable("/usr/local/bin/tesseract");
+    }
+} else {
+    $ocr->tempDir("/tmp");
+    $ocr->executable("/var/home/shmazumd/build/tesseract");
 }
 
 $inputDirRoot = dirname(__FILE__) . DIRECTORY_SEPARATOR . $target_dir . DIRECTORY_SEPARATOR; //"uploads";
@@ -159,7 +164,7 @@ function processDir($ocr, $inputDir, $outputDir)
         echo "<div style='display:flex;'>";
         echo "<div style='max-width: 50%;min-width: 50%; padding: 8px;'>";
         echo "<div>Given photo</div>";
-        echo "<img src='".$publicInputUrl."' style='max-width: 100%; min-width: 100%; border:1px solid grey;'/>";
+        echo "<img src='" . $publicInputUrl . "' style='max-width: 100%; min-width: 100%; border:1px solid grey;'/>";
         echo "</div>";
         echo "<div style='padding: 8px;'>";
         echo "<div>Result</div>";
