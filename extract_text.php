@@ -45,11 +45,12 @@ if ($os === "Windows") {
     $ocr->tempDir("/tmp");
     $ocr->executable("/usr/local/bin/tesseract");
 }else{
-    echo "os=$os";
-    $ocr->tempDir("/tmp");
-    $ocr->executable("/usr/local/bin/tesseract");
+    // echo "os=$os";
+    // $ocr->tempDir("/tmp");
+    // $ocr->executable("/usr/local/bin/tesseract");
 }
-
+echo "os=$os";
+echo "<br/>";
 
 $inputDirRoot = dirname(__FILE__) . DIRECTORY_SEPARATOR . $target_dir . DIRECTORY_SEPARATOR; //"uploads";
 $outputDirRoot = dirname(__FILE__) . DIRECTORY_SEPARATOR . "results/" . explode("/", $target_dir)[1];
