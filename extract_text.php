@@ -36,7 +36,7 @@ elseif (strpos($user_agent, "Mac") !== FALSE)
 
 $ocr = new TesseractOCR();
 $ocr->lang('ben', 'eng');
-$langs = $ocr->availableLanguages();
+// $langs = $ocr->availableLanguages();
 // var_dump($langs);
 
 if ($os === "Windows") {
