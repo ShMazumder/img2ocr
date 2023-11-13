@@ -141,9 +141,24 @@ function processDir($ocr, $inputDir, $outputDir)
 
         file_put_contents($outputFileName, $contents);
 
+        $publicInputUrl = str_replace(dirname(__FILE__), $GLOBALS['host'], $img_path);
+        $publicInputUrl = $GLOBALS['host_protocol'] . str_replace(DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR, DIRECTORY_SEPARATOR, $publicInputUrl);
+        echo "<br/>";
+
         $publicUrl = str_replace(dirname(__FILE__), $GLOBALS['host'], $outputFileName);
         $publicUrl = $GLOBALS['host_protocol'] . str_replace(DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR, DIRECTORY_SEPARATOR, $publicUrl);
         echo "<br/>";
-        echo  "<a href='$publicUrl' download>" . $publicUrl . "</a>";
+
+        echo "<div style='display:flex;'>";
+        echo "<div style='max-width: 50%;min-width: 50%; padding: 8px;'>";
+        echo "<div>Given photo</div>";
+        echo "<img src='".$publicInputUrl."' style='max-width: 100%; min-width: 100%; border:1px solid grey;'/>";
+        echo "</div>";
+        echo "<div style='padding: 8px;'>";
+        echo "<div>Result</div>";
+        echo "<div style='border:1px solid grey; padding: 8px;'>$contents</div>";
+        echo  "<a href='$publicUrl' download>Click to download</a>";
+        echo "</div>";
+        echo "</div>";
     }
 }
