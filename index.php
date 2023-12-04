@@ -30,26 +30,37 @@ if (strcasecmp($action, "OCR") === 0) {
         var_dump($_FILES);
         exit();
     }
-    if ($_FILES["fileToUpload"]["error"] > 0)
-        echo "Error: " . $_FILES["fileToUpload"]["error"] . "<br />";
+
+
+    if (count($_FILES) == 0)
+        echo "No file uploaded";
     else {
-        echo "Upload: " . $_FILES["fileToUpload"]["name"] . "<br />";
-        echo "Type: " . $_FILES["fileToUpload"]["type"] . "<br />";
-        echo "Size: " . ($_FILES["fileToUpload"]["size"] / 1024) . " Kb<br />";
-        echo "Stored in: " . $_FILES["fileToUpload"]["tmp_name"];
-
         $target_dir = "uploads/" . date('Y-m-d H-i-s') . "";
-        $target_file = $target_dir . DIRECTORY_SEPARATOR . basename($_FILES["fileToUpload"]["name"]);
-        if (!file_exists($target_dir)) {
-            mkdir($target_dir, 0777, true);
+        var_dump($_FILES['fileToUpload']);
+
+        for ($i = 0; $i < count($_FILES['fileToUpload']['name']); $i++) {
+
+            if ($_FILES["fileToUpload"]["error"][$i] > 0) {
+                echo "Error: " . $_FILES["fileToUpload"]["error"][$i] . "<br />";
+                continue;
+            }
+            $target_file = $target_dir . DIRECTORY_SEPARATOR . basename($_FILES["fileToUpload"]["name"][$i]);
+            if (!file_exists($target_dir)) {
+                mkdir($target_dir, 0777, true);
+            }
+
+            echo "Upload: " . $_FILES["fileToUpload"]["name"][$i] . "<br />";
+            echo "Type: " . $_FILES["fileToUpload"]["type"][$i] . "<br />";
+            echo "Size: " . ($_FILES["fileToUpload"]["size"][$i] / 1024) . " Kb<br />";
+            echo "Stored in: " . $_FILES["fileToUpload"]["tmp_name"][$i];
+
+            $tmp_file = $_FILES["fileToUpload"]["tmp_name"][$i];
+            $tmp_save = "tmp" . DIRECTORY_SEPARATOR . basename($_FILES["fileToUpload"]["name"][$i]);
+
+            move_uploaded_file($tmp_file, $tmp_save);
+
+            split_image($tmp_save, basename($_FILES["fileToUpload"]["name"][$i]), $target_dir);
         }
-
-        $tmp_file = $_FILES["fileToUpload"]["tmp_name"];
-        $tmp_save = "tmp".DIRECTORY_SEPARATOR . basename($_FILES["fileToUpload"]["name"]);
-
-        move_uploaded_file($tmp_file, $tmp_save);
-
-        split_image($tmp_save, basename($_FILES["fileToUpload"]["name"]), $target_dir);
 
         require "extract_text.php";
     }
@@ -96,7 +107,7 @@ if (strcasecmp($action, "OCR") === 0) {
     // echo "</form>";
 
     echo '<form action="index.php" method="post" enctype="multipart/form-data">
-            <input type="file" name="fileToUpload" id="fileToUpload">
+            <input type="file" name="fileToUpload[]" id="fileToUpload" multiple>
             <input type="submit" name="action" value="IMAGE2TEXT"/>
         </form>';
 }
@@ -118,9 +129,9 @@ function split_image($file, $name, $dir)
     // }
 
     for ($i = 0; $i < 2; $i++) {
-        $im2 = imagecrop($im, ['x' => $i*($width/2), 'y' => 0, 'width' => $width/2, 'height' => $height]);
+        $im2 = imagecrop($im, ['x' => $i * ($width / 2), 'y' => 0, 'width' => $width / 2, 'height' => $height]);
         if ($im2 !== FALSE) {
-            imagejpeg($im2, $dir."/$name-$i.jpg");
+            imagejpeg($im2, $dir . "/$name-$i.jpg");
             imagedestroy($im2);
         }
     }
@@ -128,26 +139,27 @@ function split_image($file, $name, $dir)
 }
 
 
-function imagecreatefromfile( $filename ) {
+function imagecreatefromfile($filename)
+{
     if (!file_exists($filename)) {
-        throw new InvalidArgumentException('File "'.$filename.'" not found.');
+        throw new InvalidArgumentException('File "' . $filename . '" not found.');
     }
-    switch ( strtolower( pathinfo( $filename, PATHINFO_EXTENSION ))) {
+    switch (strtolower(pathinfo($filename, PATHINFO_EXTENSION))) {
         case 'jpeg':
         case 'jpg':
             return imagecreatefromjpeg($filename);
-        break;
+            break;
 
         case 'png':
             return imagecreatefrompng($filename);
-        break;
+            break;
 
         case 'gif':
             return imagecreatefromgif($filename);
-        break;
+            break;
 
         default:
-            throw new InvalidArgumentException('File "'.$filename.'" is not valid jpg, png or gif image.');
-        break;
+            throw new InvalidArgumentException('File "' . $filename . '" is not valid jpg, png or gif image.');
+            break;
     }
 }
