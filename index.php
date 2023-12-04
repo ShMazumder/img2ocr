@@ -23,7 +23,7 @@ if (strcasecmp($action, "OCR") === 0) {
     require "extract_phone.php";
 } else if (strcasecmp($action, "VIEW") === 0) {
     require "view.php";
-} else if (strcasecmp($action, "IMAGE2TEXT") === 0 || (isset($_POST['action']) && strcasecmp($_POST['action'], "IMAGE2TEXT")===0)) {
+} else if (strcasecmp($action, "IMAGE2TEXT") === 0 || (isset($_POST['action']) && strcasecmp($_POST['action'], "IMAGE2TEXT") === 0)) {
 
     if (!isset($_FILES["fileToUpload"])) {
         // var_dump($_GET);
@@ -38,13 +38,18 @@ if (strcasecmp($action, "OCR") === 0) {
         echo "Size: " . ($_FILES["fileToUpload"]["size"] / 1024) . " Kb<br />";
         echo "Stored in: " . $_FILES["fileToUpload"]["tmp_name"];
 
-        $target_dir = "uploads/".date('Y-m-d H-i-s')."";
-        $target_file = $target_dir .DIRECTORY_SEPARATOR. basename($_FILES["fileToUpload"]["name"]);
-        if(!file_exists($target_dir)){
+        $target_dir = "uploads/" . date('Y-m-d H-i-s') . "";
+        $target_file = $target_dir . DIRECTORY_SEPARATOR . basename($_FILES["fileToUpload"]["name"]);
+        if (!file_exists($target_dir)) {
             mkdir($target_dir, 0777, true);
         }
 
-        move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
+        $tmp_file = $_FILES["fileToUpload"]["tmp_name"];
+        $tmp_save = "tmp".DIRECTORY_SEPARATOR . basename($_FILES["fileToUpload"]["name"]);
+
+        move_uploaded_file($tmp_file, $tmp_save);
+
+        split_image($tmp_save, basename($_FILES["fileToUpload"]["name"]), $target_dir);
 
         require "extract_text.php";
     }
@@ -94,4 +99,55 @@ if (strcasecmp($action, "OCR") === 0) {
             <input type="file" name="fileToUpload" id="fileToUpload">
             <input type="submit" name="action" value="IMAGE2TEXT"/>
         </form>';
+}
+
+
+function split_image($file, $name, $dir)
+{
+    $im = imagecreatefromfile($file);
+    $height = imagesy($im);
+    $width = imagesx($im);
+
+    // $a = 20;
+    // while ($a <= $height) {
+    //     $slice[] = $a;
+    //     $a += 20;
+    // }
+    // if ($a > $height && end($slice) !== $height) {
+    //     $slice[] = $a + ($height - $a);
+    // }
+
+    for ($i = 0; $i < 2; $i++) {
+        $im2 = imagecrop($im, ['x' => $i*($width/2), 'y' => 0, 'width' => $width/2, 'height' => $height]);
+        if ($im2 !== FALSE) {
+            imagejpeg($im2, $dir."/$name-$i.jpg");
+            imagedestroy($im2);
+        }
+    }
+    imagedestroy($im);
+}
+
+
+function imagecreatefromfile( $filename ) {
+    if (!file_exists($filename)) {
+        throw new InvalidArgumentException('File "'.$filename.'" not found.');
+    }
+    switch ( strtolower( pathinfo( $filename, PATHINFO_EXTENSION ))) {
+        case 'jpeg':
+        case 'jpg':
+            return imagecreatefromjpeg($filename);
+        break;
+
+        case 'png':
+            return imagecreatefrompng($filename);
+        break;
+
+        case 'gif':
+            return imagecreatefromgif($filename);
+        break;
+
+        default:
+            throw new InvalidArgumentException('File "'.$filename.'" is not valid jpg, png or gif image.');
+        break;
+    }
 }
