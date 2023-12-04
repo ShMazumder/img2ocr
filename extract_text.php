@@ -119,7 +119,7 @@ function processDir($ocr, $inputDir, $outputDir)
 
         if (!is_file($img_path)) {
             continue;
-        }
+        }        
 
         $ocr->image($img_path);
 
