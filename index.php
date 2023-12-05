@@ -35,7 +35,7 @@ if (strcasecmp($action, "OCR") === 0) {
     if (count($_FILES) == 0)
         echo "No file uploaded";
     else {
-        $target_dir = "uploads/" . date('Y-m-d H-i-s') . "";
+        $target_dir = dirname(__FILE__).DIRECTORY_SEPARATOR."uploads/" . date('Y-m-d H-i-s') . "";
         var_dump($_FILES['fileToUpload']);
 
         for ($i = 0; $i < count($_FILES['fileToUpload']['name']); $i++) {
