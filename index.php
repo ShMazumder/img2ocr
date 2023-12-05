@@ -55,7 +55,7 @@ if (strcasecmp($action, "OCR") === 0) {
             echo "Stored in: " . $_FILES["fileToUpload"]["tmp_name"][$i];
 
             $tmp_file = $_FILES["fileToUpload"]["tmp_name"][$i];
-            $tmp_save = "tmp" . DIRECTORY_SEPARATOR . basename($_FILES["fileToUpload"]["name"][$i]);
+            $tmp_save = dirname(__FILE__).DIRECTORY_SEPARATOR."tmp" . DIRECTORY_SEPARATOR . basename($_FILES["fileToUpload"]["name"][$i]);
 
             move_uploaded_file($tmp_file, $tmp_save);
 
