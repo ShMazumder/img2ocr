@@ -35,7 +35,7 @@ if (strcasecmp($action, "OCR") === 0) {
     if (count($_FILES) == 0)
         echo "No file uploaded";
     else {
-        $target_dir = dirname(__FILE__).DIRECTORY_SEPARATOR."uploads/" . date('Y-m-d H-i-s') . "";
+        $target_dir = dirname(__FILE__) . DIRECTORY_SEPARATOR . "uploads" . DIRECTORY_SEPARATOR . date('Y-m-d H-i-s') . "";
         var_dump($_FILES['fileToUpload']);
 
         for ($i = 0; $i < count($_FILES['fileToUpload']['name']); $i++) {
@@ -55,7 +55,7 @@ if (strcasecmp($action, "OCR") === 0) {
             echo "Stored in: " . $_FILES["fileToUpload"]["tmp_name"][$i];
 
             $tmp_file = $_FILES["fileToUpload"]["tmp_name"][$i];
-            $tmp_save = dirname(__FILE__).DIRECTORY_SEPARATOR."tmp" . DIRECTORY_SEPARATOR . basename($_FILES["fileToUpload"]["name"][$i]);
+            $tmp_save = dirname(__FILE__) . DIRECTORY_SEPARATOR . "tmp" . DIRECTORY_SEPARATOR . basename($_FILES["fileToUpload"]["name"][$i]);
 
             move_uploaded_file($tmp_file, $tmp_save);
 
