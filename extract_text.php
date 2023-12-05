@@ -60,7 +60,7 @@ if (strcasecmp($_SERVER['HTTP_HOST'], "localhost") === 0) {
 }
 
 $inputDirRoot = $target_dir . DIRECTORY_SEPARATOR; //"uploads";
-$outputDirRoot = dirname(__FILE__) . DIRECTORY_SEPARATOR . "results/" . explode("/", $target_dir)[1];
+$outputDirRoot = dirname(__FILE__) . DIRECTORY_SEPARATOR . "results".DIRECTORY_SEPARATOR . explode(DIRECTORY_SEPARATOR, $target_dir)[1];
 if (!file_exists($outputDirRoot)) {
     mkdir($outputDirRoot, 0777, true);
 }
