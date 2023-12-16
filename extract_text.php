@@ -168,7 +168,7 @@ function processDir($ocr, $inputDir, $outputDir)
         echo "</div>";
         echo "<div style='padding: 8px;'>";
         echo "<div>Result</div>";
-        echo "<div style='border:1px solid grey; padding: 8px;'>$contents</div>";
+        echo "<div style='border:1px solid grey; padding: 8px;' class='ocr_results'>$contents</div>";
         echo  "<a href='$publicUrl' download>Click to download</a>";
         echo "</div>";
         echo "</div>";
