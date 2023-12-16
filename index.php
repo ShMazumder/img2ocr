@@ -59,7 +59,7 @@ if (strcasecmp($action, "OCR") === 0) {
 
             move_uploaded_file($tmp_file, $tmp_save);
 
-            split_image($tmp_save, basename($_FILES["fileToUpload"]["name"][$i]), $target_dir);
+            split_image($tmp_save, basename($_FILES["fileToUpload"]["name"][$i]), $target_dir, 1);
         }
 
         require "extract_text.php";
@@ -113,7 +113,7 @@ if (strcasecmp($action, "OCR") === 0) {
 }
 
 
-function split_image($file, $name, $dir)
+function split_image($file, $name, $dir, $parts=2)
 {
     $im = imagecreatefromfile($file);
     $height = imagesy($im);
@@ -128,8 +128,8 @@ function split_image($file, $name, $dir)
     //     $slice[] = $a + ($height - $a);
     // }
 
-    for ($i = 0; $i < 2; $i++) {
-        $im2 = imagecrop($im, ['x' => $i * ($width / 2), 'y' => 0, 'width' => $width / 2, 'height' => $height]);
+    for ($i = 0; $i < $parts; $i++) {
+        $im2 = imagecrop($im, ['x' => $i * ($width / $parts), 'y' => 0, 'width' => $width / $parts, 'height' => $height]);
         if ($im2 !== FALSE) {
             imagejpeg($im2, $dir . "/$name-$i.jpg");
             imagedestroy($im2);
